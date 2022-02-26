@@ -1,10 +1,13 @@
 package com.example.Shooopie.Users;
 
+import com.example.Shooopie.Cart.Cart;
+import com.example.Shooopie.Cart.CartRepo;
 import com.example.Shooopie.Users.Exceptions.InvalidLoginInfoException;
 import com.example.Shooopie.Users.Responses.UserProfileResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.ParameterizedType;
 import java.util.Optional;
 
 @Service
@@ -12,6 +15,14 @@ public class UserService {
 
     @Autowired
     private UserRepo userRepo;
+    @Autowired
+    private CartRepo cartRepo;
+//    @Autowired
+//    private AddrRepo addrRepo;
+//    @Autowired
+//    private PaymentRepo paymentRepo;
+
+
 
     @Autowired
     private UserTokenManager userTokenManager;
@@ -20,6 +31,13 @@ public class UserService {
     public void registerUser(String username, String password){
         User user = new User(username, password);
         userRepo.save(user);
+        //create Cart, Address, PaymentMethod
+        Cart cart = new Cart(user.getUserId());
+        cartRepo.save(cart);
+//        Addr addr = new Addr(user.getUserId());
+//        cartRepo.save(cart);
+//        PayMethod payMethod = new PayMethod(user.getUserId());
+//        cartRepo.save(cart);
     }
     public String login(String username,String password){
         Optional<User> registeredUser = userRepo.findByUsername(username);

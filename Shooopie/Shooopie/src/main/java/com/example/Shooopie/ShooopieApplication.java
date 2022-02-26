@@ -17,8 +17,6 @@ public class ShooopieApplication {
 	@Autowired
 	private ProductService productService;
 
-
-
 	@PostConstruct
 	public void initUser(){
 		userService.registerUser("GODA", "1234");
@@ -88,6 +86,7 @@ public class ShooopieApplication {
 					prices[i]);
 		}
 	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShooopieApplication.class, args);
