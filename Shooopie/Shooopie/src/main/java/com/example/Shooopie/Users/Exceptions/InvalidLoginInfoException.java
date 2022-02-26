@@ -5,5 +5,4 @@ public class InvalidLoginInfoException extends RuntimeException {
         super("Invalid username or password");
     }
 
-
 }
