@@ -5,9 +5,9 @@ import com.example.Shooopie.Products.Product;
 import javax.swing.text.html.HTMLDocument;
 import java.util.Iterator;
 
-public class CartIterator implements Iterator<ProductPack> {
+public class CartIterator implements Iterator<long[]> {
 
-    public CartIterator(Cart productPacks) {
+    public CartIterator(Cart packs) {
     }
 
 
@@ -17,7 +17,7 @@ public class CartIterator implements Iterator<ProductPack> {
     }
 
     @Override
-    public ProductPack next() {
-        return new ProductPack();
+    public long[] next() {
+        return new long[]{};
     }
 }

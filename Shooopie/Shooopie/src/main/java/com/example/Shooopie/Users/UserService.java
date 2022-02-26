@@ -32,8 +32,10 @@ public class UserService {
         User user = new User(username, password);
         userRepo.save(user);
         //create Cart, Address, PaymentMethod
-        Cart cart = new Cart(user.getUserId());
-        cartRepo.save(cart);
+        if(!cartRepo.existsByUserId(user.getUserId())) {
+            Cart cart = new Cart(user.getUserId());
+            cartRepo.save(cart);
+        }
 //        Addr addr = new Addr(user.getUserId());
 //        cartRepo.save(cart);
 //        PayMethod payMethod = new PayMethod(user.getUserId());

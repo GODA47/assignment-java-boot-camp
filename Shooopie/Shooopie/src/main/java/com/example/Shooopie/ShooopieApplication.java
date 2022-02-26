@@ -1,12 +1,17 @@
 package com.example.Shooopie;
 
+import com.example.Shooopie.Products.Product;
+import com.example.Shooopie.Products.ProductRepo;
 import com.example.Shooopie.Products.ProductService;
 import com.example.Shooopie.Users.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @SpringBootApplication
 public class ShooopieApplication {
@@ -17,12 +22,15 @@ public class ShooopieApplication {
 	@Autowired
 	private ProductService productService;
 
+	@Autowired
+	private ProductRepo productRepo;
+
 	@PostConstruct
 	public void initUser(){
 		userService.registerUser("GODA", "1234");
 	}
 	@PostConstruct
-	public void initProduct() {
+	public void initProduct() throws JsonProcessingException {
 		//products properties
 		String[] productnames;
 		String[] descriptions;
@@ -85,6 +93,7 @@ public class ShooopieApplication {
 					colors[i],
 					prices[i]);
 		}
+
 	}
 
 
