@@ -1,10 +1,15 @@
-package com.example.Shooopie.Cart;
+package com.example.Shooopie.Cart.Requests;
 
 import com.example.Shooopie.JsonConvertible;
+import com.example.Shooopie.Products.ProductService;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class CartAddProductRequest implements JsonConvertible {
+    @Autowired
+    private ProductService productService;
+
     private long productId;
     private int quantity;
 
@@ -33,7 +38,7 @@ public class CartAddProductRequest implements JsonConvertible {
         return quantity;
     }
 
-    public ProductPack addOrder() {
-        return new ProductPack(productId, quantity);
+    public long[] addOrder() {
+        return new long[]{productId, (long) quantity};
     }
 }

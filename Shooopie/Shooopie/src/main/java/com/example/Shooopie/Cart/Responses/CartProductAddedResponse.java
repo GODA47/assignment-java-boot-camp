@@ -1,4 +1,4 @@
-package com.example.Shooopie.Cart;
+package com.example.Shooopie.Cart.Responses;
 
 public class CartProductAddedResponse{
 	private String message;

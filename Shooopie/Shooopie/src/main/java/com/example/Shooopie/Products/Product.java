@@ -9,7 +9,7 @@ import java.util.Objects;
 @Entity
 public class Product {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long productId;
 
     private String productname;
@@ -31,6 +31,7 @@ public class Product {
         setBrand(brand);
         setColor(color);
         setPrice(price);
+
     }
 
     @Override
@@ -46,7 +47,14 @@ public class Product {
         return false;
     }
 
-
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", productname='" + productname + '\'' +
+                ", price=" + price +
+                '}';
+    }
 
     public long getProductId() {
         return productId;

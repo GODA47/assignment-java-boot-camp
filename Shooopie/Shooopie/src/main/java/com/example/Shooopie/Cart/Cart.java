@@ -1,18 +1,20 @@
 package com.example.Shooopie.Cart;
 
 import com.example.Shooopie.Products.Product;
+import com.example.Shooopie.Products.ProductIterator;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.function.Consumer;
 
 @Entity
-public class Cart implements Iterable<ProductPack>{
+public class Cart implements Iterable<long[]>{
     @Id
     private long userId;
-    private ArrayList<ProductPack> articles;
+    private ArrayList<long[]> articles;
 
     public Cart() {
     }
@@ -22,7 +24,7 @@ public class Cart implements Iterable<ProductPack>{
         articles =  new ArrayList<>();
     }
 
-    public void add(ProductPack pack) {
+    public void add(long[] pack) {
         articles.add(pack);
     }
 
@@ -30,17 +32,18 @@ public class Cart implements Iterable<ProductPack>{
         return userId;
     }
 
-    public ArrayList<ProductPack> getArticles() {
+    public ArrayList<long[]> getArticles() {
         return articles;
     }
 
+
     @Override
-    public Iterator<ProductPack> iterator() {
+    public Iterator<long[]> iterator() {
         return new CartIterator(this);
     }
 
     @Override
-    public void forEach(Consumer<? super ProductPack> action) {
+    public void forEach(Consumer<? super long[]> action) {
         Iterable.super.forEach(action);
     }
 }
